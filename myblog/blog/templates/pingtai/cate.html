@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  {% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="{% static 'pingtai/css/pintuer.css' %}">
+<link rel="stylesheet" href="{% static 'pingtai/css/admin.css' %}">
+<script src="{% static 'pingtai/js/jquery.js' %}"></script>
+<script src="{% static 'pingtai/js/pintuer.js' %}"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong></div>
+  <div class="padding border-bottom">
+    <button type="button" class="button border-yellow" onclick="window.location.href='#add'">
+        <span class="icon-plus-square-o"></span> 添加分类</button>
+  </div>
+  <table class="table table-hover text-center">
+    <tr>
+      <th width="5%">序号</th>
+      <th width="15%">一级分类</th>
+      <th width="60%">关键字</th>
+      <th width="20%">操作</th>
+    </tr>
+    {% for item in cate %}
+    <tr id="c{{ item.id }}">
+      <td>{{ forloop.counter }}</td>
+      <td contenteditable="true" id="name{{ item.id }}" onblur="editCate({{ item.id }})">{{ item.name }}</td>
+      <td>
+
+        {% for obj in item.keyword_set.all %}
+        <span id="k{{ obj.id }}"  style="border:1px solid red;padding:5px;margin:0 5px;cursor:pointer;box-sizing:border-box;" ondblclick="delkeyword({{ obj.id }})">
+        {{ obj.name}}
+          </span>
+        {% endfor %}
+      </td>
+      <td><div class="button-group">
+          <a class="button border-red" href="javascript:void(0)" onclick="return del({{ item.id }})"><span class="icon-trash-o"></span> 删除</a> </div></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<script type="text/javascript">
+function del(id){
+	$.ajax({
+        url:"/pingtai/delCate/",
+        type:"post",
+        dataType:"json",
+        data:{id:id},
+        success:function(e){
+            if(e['code']=="ok"){
+                if(confirm("您确定要删除吗?")){
+                    console.log(id)
+                    $("#c"+id).detach()
+                }
+            }else{
+                    alert("删除失败")
+                  }
+        }
+    })
+}
+</script>
+<div class="panel admin-panel margin-top">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="/pingtai/cate/">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="label">
+          <label>上级分类：</label>
+        </div>
+        <div class="field">
+          <select name="type" class="input w50">
+            <option value="0">请选择分类</option>
+            {% for item in cate %}
+            <option value="{{ item.id }}">{{ item.name }}</option>
+            {% endfor %}
+          </select>
+          <div class="tips">不选择分类默认为添加分类</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>单个添加：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="name" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>批量添加：</label>
+        </div>
+        <div class="field">
+          <textarea type="text" class="input w50" name="tits" style="height:150px;" placeholder="多个分类标题请转行"></textarea>
+          <div class="tips">多个分类或多个关键字以逗号","隔开</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function delkeyword(id){
+    $.ajax({
+        url:"/pingtai/delkeyword/",
+        type:"post",
+        dataType:"json",
+        data:{id:id},
+        success:function(e){
+            if(e['code']=="ok"){
+                if(confirm("您确定要删除吗?")){
+                     $("#k"+id).detach()
+                }
+            }else{
+                alert("删除失败")
+            }
+        }
+    })
+  }
+  <!--function editCate(id){-->
+    <!--window.location.href='#add'-->
+    <!--let tds=$(`#c${id}>td`)-->
+    <!--$("[name=type] option").each(function(item,index){-->
+        <!--if($(item).text()==tds[1].innerText){-->
+            <!--$(item).attr("selected","selected")-->
+        <!--}-->
+    <!--})-->
+    <!--$("[name=tits]").val(tds[2].innerText.replace(/\s+/g,"，"))-->
+    <!--$(".form-x").attr("action","/updateCate")-->
+  <!--}-->
+  function editCate(id){
+    $.ajax({
+        url:"/pingtai/editCate/",
+        type:"post",
+        dataType:"json",
+        data:{id:id,name:$("#name"+id).text()},
+        success:function(e){
+            if(confirm("您确定要修改吗?")){
+                 alert("修改成功")
+            }
+        }
+    })
+  }
+</script>
+</body>
+</html>

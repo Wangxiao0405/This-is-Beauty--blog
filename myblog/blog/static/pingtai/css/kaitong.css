@@ -1,0 +1,265 @@
+@import "base.css";
+.fixed{
+    width: 100%;
+    height: 100%;
+    background: url("../img/fix.jpg") no-repeat center;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.wrapper{
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+#header-decor{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.wrapper1{
+    transform: rotate(180deg);
+    margin-top: -2px;
+    margin-bottom: 50px;
+}
+main{
+    width:100%;
+    height:auto;
+    background:white;
+    margin-top:-1px;
+    overflow:hidden;
+}
+main .con{
+    width:801px;
+    height:auto;
+    margin:0 auto;
+}
+main .con1{
+    padding-left:50px;
+}
+main .con h1{
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    font-size: 26px;
+    color: #918f90;
+    margin-top: 70px;
+    margin-bottom:50px;
+}
+main .con .bottom{
+    width: 153px;
+    height: 14px;
+    margin: 50px 0 50px 640px;
+}
+main .con .bottom .left{
+    width: 100px;
+    height: 100%;
+    font-size: 14px;
+    line-height: 14px;
+    color: #b2b2b2;
+    float: left;
+    cursor: pointer;
+    float:right;
+}
+
+.alert1{
+    width: 100%;
+    height: auto;
+    background: #fafafa;
+}
+.alert1 .con{
+    width:801px;
+    height:auto;
+    margin:0 auto;
+    overflow:hidden;
+}
+.alert1 .editbox h2{
+    color:#333;
+    font-size:18px;
+    line-height:18px;
+}
+.alert1 p{
+    margin-top:12px;
+}
+.alert1 p label{
+    font-size:16px;
+    color:#333;
+    line-height:35px;
+    width:85px;
+    height:35px;
+    display:block;
+    float:left;
+}
+.alert1 p input{
+    width:150px;
+    height:35px;
+    border: 2px solid #5b5b5b;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    border-radius: 6px;
+    padding-left: 10px;
+
+}
+.alert1 button{
+    width:70px;
+    height;35px;
+    border-radius:5px;
+    outline:none;
+    border:none;
+    background:#586933;
+    font-size:16px;
+    line-height:35px;
+    color:#fff;
+
+}
+.alert1 .quxiao{
+    width:70px;
+    height;35px;
+    border-radius:5px;
+    background:#586933;
+    font-size:16px;
+    line-height:35px;
+    color:#fff;
+    display:block;
+    float:left;
+    text-align:center;
+
+}
+.alert1 .button{
+    width:100%;
+    height:35px;
+    padding-left:300px;
+    margin-top:35px;
+    box-sizing:border-box;
+    margin-bottom:35px;
+}
+.meau{
+    /*width: 330px;*/
+    width: 0;
+    height: 25px;
+    position: fixed;
+    right: 93px;
+    top: 40px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.3s ease-out 0s;
+}
+.meau li{
+    width: 76px;
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+
+}
+.meau li a{
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+}
+.meau li:before{
+    margin-left: -5px;
+    content: '[';
+}
+.meau li:after{
+    margin-left: 5px;
+    content: ']';
+}
+header{
+    width: 100%;
+    height: 100px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+header .left,header .right{
+    width: 50px;
+    height: 100%;
+    float: left;
+    color: white;
+    line-height: 100px;
+    text-align: center;
+    z-index: 999;
+}
+header i:hover{
+    color: gray;
+}
+header .left{
+    float: left;
+    z-index: 999;
+}
+header .right{
+    float: right;
+    position: relative;
+}
+header .iconfont{
+    font-size: 30px;
+}
+.head{
+    width: 100%;
+    height: 200px;
+}
+.head .center{
+    width: 160px;
+    height: 200px;
+    margin-left: 47%;
+    overflow: hidden;
+}
+.head .center .top{
+    width: 120px;
+    height: 120px;
+    border-radius:50%;
+    margin-left:20px;
+}
+.head .center h3{
+    width: auto;
+    height: 38px;
+    color: white;
+    font-size: 20px;
+    line-height: 38px;
+    margin-top:20px;
+    float:left;
+}
+.head .center span{
+    width:60px;
+    height:30px;
+    padding:5px;
+    box-sizing:border-box;
+    border: 1px solid red;
+    border-radius: 8px;
+    margin: 25px 0 40px;
+    display: block;
+    float: right;
+    font-size: 16px;
+    line-height: 19px;
+    color: red;
+    text-align: center;
+    cursor:pointer;
+}
+.alert{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 10;
+}
+.search{
+    width: 600px;
+    height: 57px;
+    border-radius: 29px;
+    background: #9f9f9c;
+    color: white;
+    font-size: 24px;
+    line-height: 57px;
+    text-align: center;
+    margin-top: 24px;
+    margin-left: 35%;
+}

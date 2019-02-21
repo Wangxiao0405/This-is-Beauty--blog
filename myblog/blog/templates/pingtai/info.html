@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册信息</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/yuce/css/index.css' %}">
+    <script src="{% static '/yuce/js/jquery.js' %}"></script>
+    <script src="{% static '/yuce/js/index1.js' %}"></script>
+
+</head>
+<body>
+    <!--背景图片-->
+    <div class="fixed"></div>
+    <main>
+        <h2>注册用户</h2>
+        <form action="/yuce/user/" method="post">
+            {% csrf_token %}
+            <div class="box">
+                <label for="">请输入姓名：</label>
+                {{ form.name }}
+            </div>
+            <div class="box">
+             <label for="">请输入年龄：</label>
+             {{ form.age }}
+            </div>
+            <div class="box">
+                <label for="">请选择性别：</label>
+                {{ form.sex }}
+            </div>
+            <div class="box">
+                <label for="">请输入您的薪水：</label>
+                {{ form.salary }}
+            </div>
+            <button id="button">注册</button>
+        </form>
+
+    </main>
+
+
+</body>
+</html>

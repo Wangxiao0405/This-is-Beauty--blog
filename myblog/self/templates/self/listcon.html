@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'self/css/pintuer.css' %}">
+<link rel="stylesheet" href="{% static 'self/css/admin.css' %}">
+<script src="{% static 'pingtai/js/jquery.js' %}"></script>
+<script src="{% static 'pingtai/js/pintuer.js' %}"></script>
+</head>
+<body>
+<form method="post" action="" id="listform">
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="100" style="text-align:left; padding-left:20px;">序号</th>
+        <th>题目</th>
+        <th>网站分类</th>
+        <th>关键字</th>
+        <th>个人分类</th>
+        <th>主题</th>
+        <th>发布状态</th>
+        <th>浏览量</th>
+        <th width="10%">创作时间</th>
+        <th width="310">操作</th>
+      </tr>
+      <volist name="list" id="vo">
+        {% for item in page_info %}
+        <tr id="c{{ item.id }}">
+          <td >{{ forloop.counter }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.c }}</td>
+          <td><font color="#00CC99">{{ item.k }}</font></td>
+          <td>{{ item.sc }}</td>
+          <td>
+            {% if item.theme == 1 %}
+            简约
+            {% elif item.theme == 2 %}
+            清新
+            {% elif item.theme == 3 %}
+            雅致
+            {% else %}
+            唯美
+            {% endif %}
+          </td>
+          <td>
+              {% if item.s == 1 %}
+              已发布
+              {% else %}
+              草稿
+              {% endif %}
+          </td>
+          <td>{{ item.page_view  }}</td>
+          <td>{{ item.c_time }}</td>
+          <td><div class="button-group">
+              <a class="button border-main" href="{% url 'self:editcontent' %}"><span class="icon-edit"></span> 修改</a>
+              <a class="button border-red" href="javascript:void(0)" onclick="return del({{ item.id }})">
+                  <span class="icon-trash-o"></span> 删除</a> </div></td>
+        </tr>
+        {% endfor %}
+
+      <tr>
+        <td colspan="8">
+          <div class="pagelist">
+            {% if page_info.has_previous %}
+            <a href="?page=1"> 首页</a>
+            <a href="?page={{ page_info.previous_page_number }}">上一页</a>
+            {% else %}
+            <a href="javascript:;">首页</a>
+            <a href="javascript:;">上一页</a>
+            {% endif %}
+            {% for page_num in page_info.paginator.page_range %}
+            <a href="?page={{page_num}}">{{page_num}}</a>
+            {% endfor %}
+            {% if page_info.has_next %}
+            <a href="?page={{page_info.next_page_number}}">下一页</a>
+            <a href="?page={{ page_info.paginator.num_pages }}">尾页</a>
+            {% else %}
+            <a href="javascript:;">下一页</a>
+            <a href="javascript:;">尾页</a>
+            {% endif %}
+
+          </div>
+        </td>
+        </td>
+      </tr>
+      </volist>
+    </table>
+  </div>
+</form>
+<script type="text/javascript">
+
+//搜索
+function changesearch(){	
+		
+}
+
+//单个删除
+function del(id){
+	$.ajax({
+        url:"/self/delcontent/",
+        type:"post",
+        dataType:"json",
+        data:{id:id},
+        success:function(e){
+            if(e['code']=="ok"){
+                if(confirm("您确定要删除吗?")){
+                    console.log(id)
+                    $("#c"+id).detach()
+                }
+            }else{
+                    alert("删除失败")
+                  }
+        }
+    })
+}
+
+//全选
+$("#checkall").click(function(){ 
+  $("input[name='id[]']").each(function(){
+	  if (this.checked) {
+		  this.checked = false;
+	  }
+	  else {
+		  this.checked = true;
+	  }
+  });
+})
+
+//批量删除
+function DelSelect(){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		var t=confirm("您确认要删除选中的内容吗？");
+		if (t==false) return false;		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择您要删除的内容!");
+		return false;
+	}
+}
+
+//批量排序
+function sorts(){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){	
+		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择要操作的内容!");
+		return false;
+	}
+}
+
+
+//批量首页显示
+function changeishome(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		
+		$("#listform").submit();	
+	}
+	else{
+		alert("请选择要操作的内容!");		
+	
+		return false;
+	}
+}
+
+//批量推荐
+function changeisvouch(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		
+		
+		$("#listform").submit();	
+	}
+	else{
+		alert("请选择要操作的内容!");	
+		
+		return false;
+	}
+}
+
+//批量置顶
+function changeistop(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){		
+		
+		$("#listform").submit();	
+	}
+	else{
+		alert("请选择要操作的内容!");		
+	
+		return false;
+	}
+}
+
+
+//批量移动
+function changecate(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){		
+		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择要操作的内容!");
+		
+		return false;
+	}
+}
+
+//批量复制
+function changecopy(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){	
+		var i = 0;
+	    $("input[name='id[]']").each(function(){
+	  		if (this.checked==true) {
+				i++;
+			}		
+	    });
+		if(i>1){ 
+	    	alert("只能选择一条信息!");
+			$(o).find("option:first").prop("selected","selected");
+		}else{
+		
+			$("#listform").submit();		
+		}	
+	}
+	else{
+		alert("请选择要复制的内容!");
+		$(o).find("option:first").prop("selected","selected");
+		return false;
+	}
+}
+
+</script>
+</body>
+</html>

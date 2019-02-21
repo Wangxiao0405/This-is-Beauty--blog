@@ -1,0 +1,94 @@
+{% extends 'self/muban.html'%}
+
+{% block css%}
+{% load static %}
+<link rel="stylesheet" href="{% static '/self/css/index.css' %}">
+{% endblock%}
+
+{% block main %}
+<main>
+        <div class="fenlei">
+            <div class="fenlei_word">全部</div>
+            <div class="fenlei_word">某些</div>
+            <div class="fenlei_word">python</div>
+        </div>
+        <ul>
+            {% for item in content %}
+                {% if item.theme == 1 %}
+                <li class="small">
+                    <input type="hidden">
+                    <a href="{% url 'self:detail' item.id %}"><h1 class="tittle">{{ item.title }}</h1>
+
+                        <div class="neirong">
+                            {{ item.con|safe }}
+                        </div>
+                    </a>
+                </li>
+                {% elif item.theme == 2 %}
+                <li class="big">
+                    <a href="{% url 'self:detail' item.id %}">
+                        <div class="picbox"></div>
+                        <div class="word">
+                            <h1>{{ item.title }}</h1>
+                            <h2>发布日期：2017-12-30</h2>
+                            <h3>总浏览量：1203 reads</h3>
+                        </div>
+                        <div class="neirong">
+                            {{ item.con|safe }}
+                        </div>
+                        <div class="bottom">
+                            <div class="left">READ MORE</div>
+                            <div class="right">31 Comments</div>
+                        </div>
+                    </a>
+                </li>
+                {% elif item.theme == 3 %}
+                <li class="big big2">
+                    <a href="{% url 'self:detail' item.id %}">
+                        <div class="picbox"></div>
+                        <div class="word">
+                            <h1>{{ item.title }}</h1>
+                            <h2>发布日期：2017-12-30</h2>
+                            <h3>总浏览量：1203 reads</h3>
+                        </div>
+                        <div class="neirong">
+                            {{ item.con|safe }}
+                        </div>
+                        <div class="bottom">
+                            <div class="left">READ MORE</div>
+                            <div class="right">31 Comments</div>
+                        </div>
+                    </a>
+                </li>
+                {% else %}
+                <li class="big big1" >
+                    <a href="{% url 'self:detail' item.id %}">
+                        <div class="gray">
+                            <div class="picbox"></div>
+                            <div class="word">
+                                <h1>{{ item.title }}</h1>
+                                <h2>发布日期：2017-12-30</h2>
+                                <h3>总浏览量：1203 reads</h3>
+                            </div>
+                            <div class="neirong">
+                            {{ item.con|safe }}
+                        </div>
+                            <div class="bottom">
+                                <div class="left">READ MORE</div>
+                                <div class="right">31 Comments</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+
+
+
+
+    </main>
+{% endblock %}
+{% block js %}
+<script src="{% static 'self/js/index.js' %}"></script>
+{% endblock %}

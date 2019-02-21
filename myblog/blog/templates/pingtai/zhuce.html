@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    {% load static %}
+    <script src="{% static '/pingtai/js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_850328_4weqx76q6s5.css">
+    <link rel="stylesheet" href="{% static '/pingtai/css/zhuce.css' %}">
+</head>
+<style>
+    *{
+        list-style:none;
+    }
+</style>
+<body>
+<div class="fixed"></div>
+<div class="head">
+    <div class="center">
+        <div class="top"></div>
+        <h3>Welcome</h3>
+    </div>
+</div>
+<div class="con">
+    <form action="/zhuce/" method="post">
+        {% csrf_token %}
+        {{ form }}
+
+    <button>注册</button>
+    </form>
+    <a href="/islogin/"><button class="button">已经有账号了？立即登录</button></a>
+
+    <div class="denglu">
+        <div class="left">其他方式登录：</div>
+        <ul>
+            <li>
+                <i class="iconfont icon-qq"></i>
+
+            </li>
+            <li>
+                <i class="iconfont icon-ai-weixin"></i>
+            </li>
+            <li>
+                <i class="iconfont icon-weibo"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--<div class="wrapper">-->
+<!--<svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">-->
+<!--<path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>-->
+<!--<path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>-->
+<!--<path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>-->
+<!--<path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>-->
+<!--<path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>-->
+<!--<path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>-->
+<!--<path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>-->
+<!--<path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>-->
+<!--</svg>-->
+<!--</div>-->
+<!--<div class="wrapper wrapper1">-->
+<!--<svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">-->
+<!--<path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>-->
+<!--<path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>-->
+<!--<path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>-->
+<!--<path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>-->
+<!--<path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>-->
+<!--<path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>-->
+<!--<path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>-->
+<!--<path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>-->
+<!--</svg>-->
+<!--</div>-->
+<!--<script src="js/index.js"></script>-->
+</body>
+<script>
+    $(".captcha").click(function(){
+        $.ajax({
+            url:"/captcha/refresh/",
+            dataType:"json",
+            success:function(e){
+                $(".captcha").attr("src",e['image_url'])
+                $("#id_captcha_0").val(e['key'])
+            }
+        })
+    })
+</script>
+</html>

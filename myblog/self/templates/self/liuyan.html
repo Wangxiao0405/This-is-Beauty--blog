@@ -1,0 +1,147 @@
+{% extends 'self/muban.html' %}
+
+{% block css%}
+{% load static %}
+<link rel="stylesheet" href="{% static '/self/css/liuyan.css' %}">
+{% endblock%}
+
+{% block main %}
+<main>
+        <div class="con">
+            <h1>街坊留言</h1>
+            <div class="bottom">
+                <div class="left" id="comment">
+                    <i class="iconfont icon-xinxi"></i>
+                    折叠评论区
+                </div>
+                <div class="right" id="share">
+                    <i class="iconfont icon-xinxi"></i>
+                    分享
+                </div>
+            </div>
+        </div>
+        <div class="share">
+            <div class="con">
+                <ul>
+                    <li>
+                        <i class="iconfont icon-kongjian"></i>
+                    </li>
+                    <li>
+                        <i class="iconfont icon-weibo"></i>
+                    </li>
+                    <li>
+                        <i class="iconfont icon-douban1"></i>
+                    </li>
+                    <li>
+                        <i class="iconfont icon-birdxiaoniao"></i>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="comment">
+            <div class="con">
+                <h2 id="count">{{ count }}条评论</h2>
+                <div class="ul">
+                    <ul id="ul">
+                        {% for item in liuyan %}
+                        <li class="li">
+                            <div class="left"></div>
+                            <div class="right">
+                                <div class="autor">{{ item.name }}</div>
+                                <div class="word">{{ item.word }}</div>
+                                <div class="time">2018年2月16日 <span class="huifu1" >回复</span></div>
+                                <input type="text" placeholder="请回复" class="huifu">
+                            </div>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+
+                    <div class="message">
+                        <ul>
+                            <li>
+                                <!--{{ form.name }}-->
+                                <input type="text" name="nicheng" id="nicheng" placeholder="昵称:">
+                            </li>
+                            <li>
+                                <!--{{ form.tel }}-->
+                                <input type="text" name="eamil" id="eamil" placeholder="邮箱:">
+                            </li>
+                            <li>
+                                <!--{{ form.eamil }}-->
+                                <input type="text" name="tel" id="tel" placeholder="aaa电话:">
+                            </li>
+                        </ul>
+                         <ul >
+                            <li class="moremore">
+                                <!--{{ form.word }}-->
+                                <input type="text" name="word" id="word" placeholder="你不想说些什么吗?(๑╹◡╹)...">
+                            </li>
+                            <li style="width: 80px;">
+
+                                <button style="width:80px;height:67px;outline:none;background:none;" onclick="fbliuyan()">发送</button>
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+
+            </div>
+
+        </div>
+
+
+    </main>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'self/js/liuyan.js' %}"></script>
+<script>
+function fbliuyan(){
+    let name=$("[name=nicheng]").val()
+    let tel=$("[name=tel]").val()
+    let eamil=$("[name=eamil]").val()
+    let word=$("[name=word]").val()
+    console.log(name,tel,eamil,word)
+	$.ajax({
+        url:"/self/liuyan/",
+        type:'post',
+        dataType:"json",
+        data:{nicheng:name,tel:tel,eamil:eamil,word:word},
+        success:function(e){
+            console.log("发表")
+            console.log(e)
+            if(e['type']=="ok"){
+                $("#ul").append($(
+                    `
+                        <li class="li">
+                            <div class="left"></div>
+                            <div class="right">
+                                <div class="autor">${ name }</div>
+                                <div class="word">${ word }</div>
+                                <div class="time">2018年2月16日 <span class="huifu1" >回复</span></div>
+                                <input type="text" placeholder="请回复" class="huifu">
+                            </div>
+                        </li>
+                    `
+                ))
+                $("#count").replaceWith($(
+                    `
+                    <h2 id="count">${ e.count }条评论</h2>
+                    `
+                ))
+
+            }else{
+                   alert("您的留言含有恶意信息，发表失败")
+                  }
+        }
+    })
+}
+
+</script>
+{% endblock %}

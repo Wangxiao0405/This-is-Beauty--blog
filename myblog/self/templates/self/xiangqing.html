@@ -1,0 +1,163 @@
+{% extends 'self/muban.html'%}
+
+{% block css%}
+{% load static %}
+<link rel="stylesheet" href="{% static '/self/css/xiangqing.css' %}">
+{% endblock%}
+
+
+{% block main %}
+<main>
+    <div class="con">
+        {% for item in con %}
+        <h1>{{ item.title }}</h1>
+        {{ item.con|safe }}
+        <div class="works">
+            <div class="left">
+                <img src="{% static '/self/img/yarn.jpg' %}" alt="">
+            </div>
+            <div class="right">
+                <h2>关于购买Yarn<span>2016-09-19 07:30</span></h2>
+                <p>首先说明一下，Yarn是本人第一款付费主题，用心用力，只为小众，不卖代码。函数各种代码满网络可找，设计可以千差万别。Yarn定位是清新、单栏、个性，如果你想要的是一款与众不同的主题，那么Yarn是您的</p>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="book">
+            <img src="{% static '/self/img/book.png' %}" alt="">
+        </div>
+        <h3>ONE MORE THING</h3>
+        <p>也是说到 Yarn 已经用的时间一年了，人总是向往对美好的事物，所以这次是 Dcras ！至于命名有什么含义，以后再告诉大家，聪明的您可能从旁边的预览图能找到答案。</p>
+        <p>国庆期间有了 Dcras 这个想法，现阶段只是试点代码实现了头部和部分的文章样式（草图画成这屌样就敢动工也是服），试着尝试一下我最不喜欢的三栏目布局，悦目的动效一直是我做主题追求的，所以这次 Dcras 也是！我郑重的在这立下个 Flag ，
+            Pjax 不完成我是绝对不会上线的，所以有可能遥遥无期，给我的点时间（ Maybe next year ），我会令它变得更 perfect ！</p>
+        <p>当然 Dcras 也是一款 wordpress 付费主题，将会应用到更多 WordPress 支持的强大功能，模版更丰富，至于大家关系的价格问题，
+            我会说：只有 Yarn 的用户可以向我“讨价还价”！其他一律原价！这是对我 Yarn 用户承诺最真诚的福利。</p>
+        <h4>2019/9/19 更新</h4>
+        <div class="bottom">
+            <div class="left" id="comment">
+                <i class="iconfont icon-xinxi"></i>
+                折叠评论区
+            </div>
+            <div class="right" id="share">
+                <i class="iconfont icon-xinxi"></i>
+                分享
+            </div>
+        </div>
+
+    </div>
+    <div class="share">
+        <div class="con">
+            <ul>
+                <li>
+                    <i class="iconfont icon-kongjian"></i>
+                </li>
+                <li>
+                    <i class="iconfont icon-weibo"></i>
+                </li>
+                <li>
+                    <i class="iconfont icon-douban1"></i>
+                </li>
+                <li>
+                    <i class="iconfont icon-birdxiaoniao"></i>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="comment">
+        <div class="con">
+            <h2>160条评论</h2>
+            <div class="ul">
+                <ul>
+                    <li class="li">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="autor">Wxxx</div>
+                            <div class="word">俊杰男神，小弟给您拜年了。新年行大运，阖家欢乐，幸福安康。</div>
+                            <div class="time">2018年2月16日 <span class="huifu1">回复</span></div>
+                            <input type="text" placeholder="请回复" class="huifu">
+                        </div>
+                    </li>
+                    <li class="li">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="autor">Wxxx</div>
+                            <div class="word">俊杰男神，小弟给您拜年了。新年行大运，阖家欢乐，幸福安康。</div>
+                            <div class="time">2018年2月16日 <span class="huifu1">回复</span></div>
+                            <input type="text" placeholder="请回复" class="huifu">
+                        </div>
+                    </li>
+                    <li class="li">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="autor">Wxxx</div>
+                            <div class="word">俊杰男神，小弟给您拜年了。新年行大运，阖家欢乐，幸福安康。</div>
+                            <div class="time">2018年2月16日 <span class="huifu1">回复</span></div>
+                            <input type="text" placeholder="请回复" class="huifu">
+                        </div>
+                    </li>
+                    <li class="li">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="autor">Wxxx</div>
+                            <div class="word">俊杰男神，小弟给您拜年了。新年行大运，阖家欢乐，幸福安康。</div>
+                            <div class="time">2018年2月16日 <span class="huifu1">回复</span></div>
+                            <input type="text" placeholder="请回复" class="huifu">
+                        </div>
+                    </li>
+                    <li class="li">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="autor">Wxxx</div>
+                            <div class="word">俊杰男神，小弟给您拜年了。新年行大运，阖家欢乐，幸福安康。</div>
+                            <div class="time">2018年2月16日 <span class="huifu1">回复</span></div>
+                            <input type="text" placeholder="请回复" class="huifu">
+                        </div>
+                    </li>
+                    <li class="li">
+                        <div class="left"></div>
+                        <div class="right">
+                            <div class="autor">Wxxx</div>
+                            <div class="word">俊杰男神，小弟给您拜年了。新年行大运，阖家欢乐，幸福安康。</div>
+                            <div class="time">2018年2月16日 <span class="huifu1">回复</span></div>
+                            <input type="text" placeholder="请回复" class="huifu">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="message">
+                <ul>
+                    <li>
+                        <input type="text" placeholder="昵称:">
+                    </li>
+                    <li>
+                        <input type="text" placeholder="邮箱:">
+                    </li>
+                    <li>
+                        <input type="text" placeholder="地址:">
+                    </li>
+                </ul>
+            </div>
+            <div class="message message1">
+                <ul>
+                    <li>
+                        <input type="text" placeholder="你不想说些什么吗?(๑╹◡╹)...">
+                    </li>
+                    <li><button>发送</button></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!--左右按钮-->
+<div class="btn_left"><</div>
+<div class="slide">重构图样样式设计</div>
+<div class="btn_right">></div>
+<div class="slide1">重构图样样式设计</div>
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'self/js/liuyan.js' %}"></script>
+{% endblock %}

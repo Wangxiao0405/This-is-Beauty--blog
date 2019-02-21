@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/pingtai/css/shouye.css' %}">
+    <script src="{% static 'pingtai/js/jquery.js' %}"></script>
+    <script src="{% static 'pingtai/js/shouye.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1003160_npmu48faz7.css">
+</head>
+<body>
+    <div class="fixed"></div>
+    <header>
+        <div class="con">
+            <div class="weibo">
+                <img src="{% static '/pingtai/img/omikron.png' %}" alt="">
+                This is Beauty
+            </div>
+            <form action="/search/" method="post">
+                {% csrf_token %}
+                <div class="search">
+                    <input type="text" name="sousuo" placeholder="搜索">
+                    <button class="icon">
+                        <i class="iconfont icon-sousuo"></i>
+                    </button>
+                </div>
+            </form>
+            {% if error_msg %}
+                <span class="error">
+                    <i class="iconfont icon-jinggao"></i>
+                    {{ error_msg }}
+                </span>
+            {% endif %}
+
+            <ul class="pull_right">
+                  {% if type != 3 %}
+                <li>
+                    <a href="{% url 'pingtai:kaitong' %}">
+                        <i class="iconfont icon-icon_xie" style="color: red"></i>
+                        开通博客
+                    </a>
+                </li>
+                {% endif %}
+                {% if type == 3 %}
+                <li>
+                    <a href="{% url 'self:index' name %}">
+                        <i class="iconfont icon-icon_xie" style="color: red"></i>
+                        我的博客
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="">
+                        <i class="iconfont icon-shoucang1" style="color: orange;;font-size: 14px;"></i>
+                        赚零钱
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="iconfont icon-linedesign-03" style="color: blue;font-size: 14px;"></i>
+                        消息
+                    </a>
+                </li>
+                {% if not name %}
+                <li><a href="{% url 'pingtai:islogin' %}">登陆</a></li>
+                <li><a href="{% url 'pingtai:zhuce' %}">注册</a></li>
+                {% else %}
+                <li style="position: relative;" id="pull">
+                    <a href="">
+                        {% if img %}
+                        <span>
+                            <img src="/media/{{ img }}" alt="">
+                        </span>
+                        {% else %}
+                        <span>
+                            <img src="{% static 'pingtai/img/7.png' %}" alt="">
+                        </span>
+                        {% endif %}
+                        <i class="iconfont icon-xiangxia"></i>
+                    </a>
+                    <div class="pull">
+                        <ul>
+                            <li>
+                                <a href="{% url 'self:lianjie' %}" style="margin-top: 0;">
+                                    <i class="iconfont icon-guanzhu"></i>
+                                    我的关注
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="iconfont icon-shoucang1"></i>
+                                    我的收藏
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'pingtai:person' %}">
+                                    <i class="iconfont icon-xiazai"></i>
+                                    个人中心
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'self:index' name %}">
+                                    <i class="iconfont icon-bokeyuan"></i>
+                                    我的博客
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="iconfont icon-buzhi"></i>
+                                    管理博客
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="iconfont icon-bangzhu1"></i>
+                                    帮助
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'pingtai:loginout' %}">
+                                    <i class="iconfont icon-tuichu"></i>
+                                    退出
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="con">
+            <nav>
+                <ul>
+                    {% for item in category %}
+                    <li><a href="javascript:;" >{{ item.name }}</a></li>
+                    {% endfor %}
+
+                </ul>
+            </nav>
+            <div class="fixed_content">
+                <div class="center">
+                    <div class="adv">
+                        <img src="{% static '/pingtai/img/1.jpg' %}" alt="">
+                        <div class="adv_left">
+                            <img src="{% static '/pingtai/img/app.jpg' %}" alt="">
+                            <img src="{% static '/pingtai/img/py.jpg' %}" alt="" style="margin-top: 5px;">
+                        </div>
+                    </div>
+                    <ul>
+                        {% for item in content %}
+                        <li>
+                            <a href="{% url 'self:detail' item.id %}">
+                                <h1>{{ item.title }}</h1>
+                                <div class="list_userbar">
+                                    <h2 style="color:red;font-size:14px;">{{ item.a }}</h2>
+                                    <h3>{{ item.c_time }}</h3>
+                                    <div class="interactive">
+                                        <div class="read_num">
+                                            <span>13561</span>
+                                            阅读
+                                        </div>
+                                        <div class="read_num">
+                                            <span>13561</span>
+                                            评论
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+
+
+
+                    </ul>
+                </div>
+                <aside>
+                    <div class="adv">
+                        <img src="{% static '/pingtai/img/201901031632443514.jpg' %}" alt="">
+                    </div>
+                    {% if isadv == 1 %}
+                    <div class="adv adv1">
+                        <!--<img src="{% static '/pingtai/img/201901031632443514.jpg' %}" alt="">-->
+                        <h2>你想买的房子值</h2>
+                        <h2 style="margin-top:10px;padding-left:71px;"> 多少钱！！</h2>
+                        <div class="ktbox">
+                            <a href="{% url 'pingtai:fangjia' %}" class="kt">马上了解</a>
+                            <i class="shouzhi"></i>
+                        </div>
+                    </div>
+                     {% endif %}
+                    <div class="right_box">
+                        <h1>今日推荐</h1>
+                        <ul>
+                            <li>
+                                <img src="{% static '/pingtai/img/b064d58ffda682ecde4f0864047c0ba0.jpg' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/1.jpg' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/5.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/6.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/7.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/8.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/9.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/10.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/11.png' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/12.jpg' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/13.jpg' %}" alt="">
+                                <h2>BAT七年经验，却抵不过外企面试的两道算法题？</h2>
+                            </li>
+
+                        </ul>
+                        <div class="othercompany">
+                            <a href="">
+                                快应用大赛
+                            </a>
+                            <a href="">
+                               英特尔开发人员专区
+                            </a>
+                            <a href="">
+                                 华为云
+                            </a>
+                            <a href="">
+                               腾讯云技术社区
+                            </a>
+                            <a href="">
+                                华为开发者专区
+                            </a>
+                            <a href="">
+                                 普元云计算
+                            </a>
+                            <a href="">
+                                PowerLinux技术社区
+                            </a>
+                        </div>
+                    </div>
+                    <div class="vote">
+                        <div class="top">
+                            <div class="guanggao">
+                                <img src="{% static '/pingtai/img/15.png' %}" alt="">
+                                <h1>快应用作为移动互联网的全新应用分发形态,是否值得开发接入</h1>
+                            </div>
+                            <div class="bottom">
+                                <div class="left">
+                                    <h1>是</h1>
+                                    <h2>71%</h2>
+                                </div>
+                                <div class="vote_click">投票参与</div>
+                                <div class="left">
+                                    <h1>否</h1>
+                                    <h2>29%</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>人工智能究竟是不是“虚假式”繁荣？</li>
+                            <li style="line-height: 21px;border: none;">普惠AI时代，AI能力不足的云服务商是否还有生存空间？</li>
+                        </ul>
+                    </div>
+                    <div class="book">
+                        <h1>GitChat极客书 <span>我要订阅</span></h1>
+                        <img src="{% static '/pingtai/img/e82c0ad06481ff47a25f7be7fbaf2d00.png' %}" alt="">
+                        <div class="neirong">
+                            <h2>深度学习入门：基于 Python 的理论与实现</h2>
+                            <h3>日本深度学习入门经典畅销书，原版上市不足2年印刷已达100000册。长期位列日亚“人工智能”类图书榜首，众多五星好评。
+                                使用Python 3，尽量不依赖外部库或工具，从零创建一个深度学习模型。
+                                示例代码清晰，源代码可下载，需要的运行环境非常简单。读者可以一边读书一边执行程序，简单易上手。
+                                使用平实的语言，结合直观的插图和具体的例子，将深度学习的原理掰开揉碎讲解，简明易懂。
+                                使用计算图介绍复杂的误差反向传播法，非常直观。
+                                相比“花书”，本书更合适入门。</h3>
+                        </div>
+                    </div>
+                    <div class="right_box right_box1">
+                        <h1>活动日历</h1>
+                        <h2><span>10</span>  Unite Shanghai 2019
+                            </h2>
+                        <h3> <span>05月 </span>上海</h3>
+                    </div>
+                    <div class="right_box right_box2">
+                        <h1>联系我们</h1>
+                        <ul class="er">
+                            <li style="margin-right: 30px;">
+                                <img src="{% static '/pingtai/img/csdn_cs_qr.png' %}" alt="">
+                                微信客服
+                            </li>
+                            <li>
+                                <img src="{% static '/pingtai/img/csdn-kf.png' %}" alt="">
+                                QQ客服
+                            </li>
+                        </ul>
+                        <div class="about">
+                            <ul>
+                                <li>关于我们</li>
+                                <li>招聘</li>
+                                <li>广告服务</li>
+                                <li style="border: none;">地图</li>
+                            </ul>
+                            <div class="company">
+                                <p>
+                                    <a href="">百度提供站内搜索 京ICP证09002463号</a>
+                                </p>
+                                <p>
+                                    <a href="">©1999-2019 江苏乐知网络技术有限公司
+                                        </a>
+                                </p>
+
+                                <p>
+                                    <a href="">
+                                        江苏知之为计算机有限公司 北京创新乐知信息技术有限公司版权所有</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="company">
+                            <p>
+                                <a href="">经营性网站备案信息 网络110报警服务</a>
+                            </p>
+                            <p>
+                                <a href="">北京互联网违法和不良信息举报中心</a>
+                            </p>
+                            <p>
+                                <a href="">中国互联网举报中心</a>
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

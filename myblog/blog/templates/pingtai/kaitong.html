@@ -1,0 +1,39 @@
+{% extends 'self/muban.html'%}
+
+{% block css%}
+{% load static %}
+<link rel="stylesheet" href="{% static '/pingtai/css/kaitong.css' %}">
+{% endblock%}
+
+
+{% block main %}
+    <main>
+        <div class="con">
+            <h1>开通博客</h1>
+            <div class="bottom">
+                <div class="left" id="edit">
+                    请填写信息
+                </div>
+            </div>
+        </div>
+        <form action="/kaitong/" method="post">
+            {% csrf_token%}
+            <div class="alert1">
+                <div class="con con1">
+                    {{ form.as_p }}
+                <div class="button">
+                    <span class="quxiao" style="background:#A79C87;margin-right:15px;cursor:pointer;">取消</span>
+                    <button>提交</button>
+                </div>
+                </div>
+            </div>
+
+
+        </form>
+    </main>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'pingtai/js/index1.js' %}"></script>
+
+{% endblock %}

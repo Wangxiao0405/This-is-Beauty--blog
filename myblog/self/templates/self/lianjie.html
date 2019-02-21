@@ -1,0 +1,35 @@
+{% extends 'self/muban.html'%}
+
+{% block css%}
+{% load static %}
+<link rel="stylesheet" href="{% static '/self/css/lianjie.css' %}">
+{% endblock%}
+
+{% block main %}
+    <main>
+        <div class="con">
+            <h1>我的关注</h1>
+            <h2>Life Blog</h2>
+            <h3>4 items in collection</h3>
+            <ul>
+                {% for item in follows %}
+                <li>
+                    {% if item.follow.info.img %}
+                    <div class="pic" style="background: url({% static '/pingtai/{{ item.follow.info.img }}' %}}) no-repeat center;background-size:cover;"></div>
+                    {% else %}
+                     <div class="pic" style="background-image: url({% static '/pingtai/img/omikron.png' %});
+                     background-repeat:no-repeat;background-position:center;background-size:contain;background-color:#586933;"></div>
+                    {% endif %}
+                    <div class="name">{{ item }}</div>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'pingtai/js/index1.js' %}"></script>
+{% endblock %}

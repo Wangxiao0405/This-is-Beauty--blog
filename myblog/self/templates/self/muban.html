@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    {% load static %}
+    <script src="{% static '/pingtai/js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_850328_4weqx76q6s5.css">
+    {% block css%}
+    {% endblock%}
+
+</head>
+<body>
+<!--背景图片-->
+    <div class="fixed"></div>
+<!--菜单-->
+    <ul class="meau">
+
+        <li><a href="{% url 'pingtai:index' %}">首页</a></li>
+        <li><a href="{% url 'self:index' name %}">个人首页</a></li>
+        <li><a href="{% url 'pingtai:person' %}">链接</a></li>
+
+        <li><a href="{% url 'self:liuyan' %}">我的留言</a></li>
+        <li><a href="{% url 'self:admin' %}">管理</a></li>
+    </ul>
+<!--搜索页面开始-->
+    <div class="alert">
+        <div class="search">Type then select or enter</div>o
+    </div>
+<!--搜索页面结束-->
+    <header>
+        <div class="left">
+            <i class="iconfont icon-sousuo"></i>
+        </div>
+        <div class="right" id="meau">
+            <i class="iconfont icon-caidan"></i>
+        </div>
+    </header>
+    <div class="head">
+        <div class="center">
+            {% if img %}
+            <div class="top" style="background: url(/media/{{ img }}) no-repeat center;background-size:cover;"></div>
+            {% else %}
+            <div class="top" style="background: url({% static '/pingtai/img/omikron.png' %}) no-repeat center;background-size:contain;"></div>
+            {% endif %}
+            <h3 class="guanzhu">{{ name }} </h3>
+            {% if is_guanzhu == 0 %}
+            <span class="follow">关注</span>
+            {% else %}
+            <span class="quxiao_follow">已关注</span>
+            {% endif %}
+        </div>
+    </div>
+<!--顶部效果-->
+    <div class="wrapper">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+        </svg>
+    </div>
+
+<!--主要内容部分-->
+    {% block main%}
+    {% endblock%}
+
+<!--底部效果-->
+    <div class="wrapper wrapper1">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+        </svg>
+    </div>
+
+<footer>
+    <ul class="top">
+        <li>
+            <i class="iconfont icon-weibo"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-ai-weixin"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-qq"></i>
+        </li>
+    </ul>
+    <div class="bottom">Copyright©2018. Design by 17sucai</div>
+</footer>
+
+</body>
+{% block js%}
+{% endblock%}
+<script>
+    $(".center").click(function(e){
+        let target=$(e.target)
+        let guanzhu=$('.guanzhu').text()
+        console.log(guanzhu)
+        console.log("关注")
+        if(target.hasClass("follow")){
+            $.ajax({
+                url:"/self/follow/",
+                type:'post',
+                dataType:"json",
+                data:{guanzhu:guanzhu},
+                success:function(e){
+                    if(e.result=='ok'){
+                        console.log("关注成功")
+                        target.replaceWith($(
+                        `
+                            <span class="quxiao_follow">已关注</span>
+                        `
+                        ))
+                    }
+                }
+            })
+        }
+        if(target.hasClass("quxiao_follow")){
+            let guanzhu=$('.guanzhu').text()
+            console.log(guanzhu)
+            console.log("取消关注")
+            $.ajax({
+                url:"/self/quxiaofollow/",
+                type:'post',
+                dataType:"json",
+                data:{guanzhu:guanzhu},
+                success:function(e){
+                    if(e.result=='ok'){
+                        console.log("取消关注成功")
+                        target.replaceWith($(
+                        `
+                            <span class="follow">关注</span>
+                        `
+                        ))
+                    }
+                }
+            })
+        }
+
+
+    })
+
+</script>
+</html>

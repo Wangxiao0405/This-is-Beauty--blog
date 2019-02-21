@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    {% load static %}
+    <script src="{% static '/pingtai/js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_850328_4weqx76q6s5.css">
+    <link rel="stylesheet" href="{% static '/pingtai/css/my.css' %}">
+</head>
+<body>
+<!--背景图片-->
+    <div class="fixed"></div>
+<!--菜单-->
+    <ul class="meau">
+        <li><a href="{% url 'pingtai:person' %}">个人资料</a></li>
+        <li><a href="lianjie.html">发表博客</a></li>
+        <li><a href="xiangqing.html">哈哈归档</a></li>
+        <li><a href="liuyan.html">我的留言</a></li>
+    </ul>
+<!--搜索页面开始-->
+    <div class="alert">
+        <div class="search">Type then select or enter</div>
+    </div>
+<!--搜索页面结束-->
+    <header>
+        <div class="left">
+            <i class="iconfont icon-sousuo"></i>
+        </div>
+        <div class="right" id="meau">
+            <i class="iconfont icon-caidan"></i>
+        </div>
+    </header>
+    <div class="head">
+        <div class="center">
+            <div class="top" style="background: url(/media/{{ img }}) no-repeat center;background-size: contain;"></div>
+            <h3>{{ name }}</h3>
+        </div>
+    </div>
+<!--顶部效果-->
+    <div class="wrapper">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+        </svg>
+    </div>
+
+<!--主要内容部分-->
+    <main>
+        <ul>
+            <li class="small">
+                <a href="xiangqing.html"><h1 class="tittle">交代是不可能交代的</h1>
+                    <p>相隔上一次的更新我掰手指数一数，下意识的双腿一软，给各位小哥哥小姐姐们跪下了。自从有了对象后，周末几乎落下了主题的进度（邪魅的笑）。
+                        一边开发新的主题，一边收集您们给我反馈回来的"臭虫"，还有新的主题后台看见了一些大神在...</p>
+                </a>
+            </li>
+            <li class="big">
+                <a href="xiangqing.html">
+                    <div class="picbox"></div>
+                    <div class="word">
+                        <h1>我才不会写年终总结之瞎说篇</h1>
+                        <h2>发布日期：2017-12-30</h2>
+                        <h3>总浏览量：1203 reads</h3>
+                    </div>
+                    <p>确实讨厌去写所谓的年终总结，在公司已经被动的想领导上交一个总结，自己就懒得去总结，不然，我觉
+                        得脑子里应该会编写出八九不离十的内容，所以正经八儿的事情略了，瞎说一下。 年初的人事调动是个人最不能接受的事情
+                        ，但不接受也得接受，老板一句“这是命令...</p>
+                    <div class="bottom">
+                        <div class="left">READ MORE</div>
+                        <div class="right">31 Comments</div>
+                    </div>
+                </a>
+            </li>
+            <li class="small">
+                <a href="xiangqing.html"><h1 class="tittle">状态</h1>
+                    <p>因为我这后半年飘忽不定的更新节奏，感觉真的对不住用户。
+                        最近才松下来能处理反馈的bug，顺便加快新主题 Dcras 的制作，农历年后或许能上线，准确时间，不敢说-- 为了感谢大家对 Yarn 的支持
+                        ，Dcras 会以 获兑现码半价的承诺 给 Yarn ...</p>
+                </a>
+            </li>
+            <li class="big big2">
+                <a href="xiangqing.html">
+                    <div class="picbox"></div>
+                    <div class="word">
+                        <h1>重构图像样式测试</h1>
+                        <h2>发布日期：2017-12-30</h2>
+                        <h3>总浏览量：1203 reads</h3>
+                    </div>
+                    <p>如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</p>
+                    <div class="bottom">
+                        <div class="left">READ MORE</div>
+                        <div class="right">31 Comments</div>
+                    </div>
+                </a>
+            </li>
+            <li class="big big1">
+                <a href="xiangqing.html">
+                    <div class="gray">
+                        <div class="picbox"></div>
+                        <div class="word">
+                            <h1>给大家介绍一下</h1>
+                            <h2>发布日期：2017-12-30</h2>
+                            <h3>总浏览量：1203 reads</h3>
+                        </div>
+                        <p>现在的明星的影响力足以影响国内娱乐圈的"半壁江山"，发条微博，新浪都恐慌好几天，来来来，蹭个热点给大家介绍一下我的女朋友。</p>
+                        <div class="bottom">
+                            <div class="left">READ MORE</div>
+                            <div class="right">31 Comments</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </main>
+
+<!--底部效果-->
+    <div class="wrapper wrapper1">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+        </svg>
+    </div>
+
+<footer>
+    <ul class="top">
+        <li>
+            <i class="iconfont icon-weibo"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-ai-weixin"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-qq"></i>
+        </li>
+    </ul>
+    <div class="bottom">Copyright©2018. Design by 17sucai</div>
+</footer>
+<script src="{% static 'pingtai/js/index1.js' %}"></script>
+</body>
+</html>

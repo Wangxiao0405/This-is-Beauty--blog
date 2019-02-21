@@ -1,0 +1,145 @@
+{% extends 'self/muban.html'%}
+
+{% block css%}
+{% load static %}
+<link rel="stylesheet" href="{% static '/pingtai/css/person.css' %}">
+{% endblock%}
+
+{% block main %}
+    <!--搜索页面开始-->
+    <div class="alert">
+        <div class="editbox">
+            <h2>修改资料</h2>
+            <form action="/editperson/" method="post">
+                {% csrf_token %}
+
+                <p>
+                    <label for="">实名:</label>
+                    <input type="text" name="real_name">
+                </p>
+                 <p>
+                    <label for="">年龄:</label>
+                    <input type="text" name="age">
+                </p>
+                <p>
+                    <label for="">电话:</label>
+                    <input type="text" name="phone">
+                </p>
+                <p>
+                    <label for="">公司:</label>
+                    <input type="text" name="company">
+                </p>
+                <p>
+                    <label for="">职位:</label>
+                    <input type="text" name="job">
+                </p>
+                 <p>
+                    <label for="">薪水:</label>
+                    <input type="text" name="salary">
+                </p>
+                <p>
+                    <label for="">理由:</label>
+                    <input type="text" name="reason" style="width:400px;height:70px;">
+                </p>
+                <div class="button">
+                    <span class="quxiao" style="background:#A79C87;margin-right:15px;cursor:pointer;">取消</span>
+                    <button>提交</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <main>
+        <div class="con">
+            <h1>个人资料</h1>
+            <div class="bottom">
+                <div class="left" id="edit">
+                    编辑资料
+                </div>
+            </div>
+            </div>
+            <div class="box">
+                <div class="con">
+                    <div class="left">
+                    <div class="head">
+                        {% if info.img %}
+                        <img src="/media/{{ info.img }}" alt="">
+                        {% else %}
+                        <img src="{% static '/pingtai/img/omikron.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <h2>
+                        <a href="">修改头像</a>
+                        <form action="/upload/" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button>提交</button>
+                        </form>
+                    </h2>
+                </div>
+                    <div class="right">
+                    <p>昵称：{{ person.username  }}</p>
+                    <p>真实姓名：{{ info.real_name  }}</p>
+                    <p>年龄：{{ info.age  }}</p>
+
+                    <p>邮箱：{{ person.email  }}</p>
+                    <p>级别：
+                        {% if info.type == 1 %}
+                        普通用户
+                        {% elif info.type == 2 %}
+                        管理员
+                        {% else %}
+                        高级用户
+                        {% endif %}
+                    </p>
+                    <p>邮箱状态：
+                        {% if info.is_email %}
+                        已验证
+                        {% else %}
+                        没有验证
+                        {% endif %}
+                    </p>
+                    <p>电话：{{ info.phone  }}</p>
+                    <p>公司：{{ info.company  }}</p>
+                    <p>职位：{{ info.job  }}</p>
+                    <p>月薪：{{ info.salary  }}</p>
+                    <p>行业：{{ info.science  }}</p>
+                    <p>开通原因：{{ info.reason  }}</p>
+
+
+                </div>
+                </div>
+            </div>
+
+
+    </main>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'pingtai/js/index1.js' %}"></script>
+<script>
+    function upload(){
+        alert(123)
+        $.ajax({
+            url:"/upload/",
+            type:"post",
+            data: new FormData($("#form")[0]),
+            processData:false,
+            contentType:false,
+            success:function(){
+                console.log("修改头像成功")
+            }
+        })
+    }
+    $(function () {
+        $("#edit").click(function () {
+            $(".alert").css("display","block")
+        })
+        $(".quxiao").click(function () {
+            $(".alert").css("display","none")
+        })
+    })
+</script>
+{% endblock %}
+
+

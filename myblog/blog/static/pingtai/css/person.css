@@ -1,0 +1,317 @@
+@import "base.css";
+.fixed{
+    width: 100%;
+    height: 100%;
+    background: url("../img/fix.jpg") no-repeat center;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.wrapper{
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+#header-decor{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.wrapper1{
+    transform: rotate(180deg);
+    margin-top: -2px;
+    margin-bottom: 50px;
+}
+main{
+    width:100%;
+    height:auto;
+    background:white;
+    margin-top:-1px;
+}
+main .con{
+    width:801px;
+    height:auto;
+    margin:0 auto;
+    overflow:hidden;
+
+}
+main .con h1{
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    font-size: 26px;
+    color: #918f90;
+    margin-top: 70px;
+}
+main .box{
+    width:100%;
+    height:570px;
+    padding-top:30px;
+    background:#fafafa;
+}
+main  .box .con .left{
+    width:160px;
+    height:100%;
+    float:left;
+}
+main .box .con .left .head{
+    width:160px;
+    height:160px;
+    background:#586933;
+    border-radius:50%;
+    overflow:hidden;
+}
+main .box .con .left .head img{
+   width:100%;
+   height:100%;
+   display:block;
+
+}
+main .box .con .left p label{
+    display:none;
+}
+main .box .con .left p input{
+    width:150px;
+    height:18px;
+    display:block;
+    position:absolute;
+    left:47px;
+    top:0;
+    opacity:0;
+}
+main .box .con .left h2{
+    width:100%;
+    height:18px;
+    margin-top:10px;
+    position:relative;
+}
+main .box .con .left h2 a{
+    font-size:18px;
+    line-height:18px;
+    text-align:center;
+    width:100%;
+    display:block;
+    color:#586933;
+}
+main .box .con .right{
+    width:640px;
+    height:100%;
+    float:right;
+    padding-left:150px;
+    box-sizing:border-box;
+}
+main .box .con .right p{
+    font-size:16px;
+    color:#333;
+    line-height:30px;
+    width:240px;
+    height:30px;
+
+    border-radius:5px;
+    padding-left:5px;
+    box-sizing:border-box;
+    margin-top:12px;
+}
+main .con .bottom{
+    width: 153px;
+    height: 14px;
+    margin: 50px 0 50px 640px;
+}
+main .con .bottom .left{
+    width: 100px;
+    height: 100%;
+    font-size: 14px;
+    line-height: 14px;
+    color: #b2b2b2;
+    float: left;
+    cursor: pointer;
+    float:right;
+}
+.alert{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 10;
+
+}
+.alert .editbox{
+    width:500px;
+    height:500px;
+    background:white;
+    margin: 200px auto;
+    overflow:hidden;
+    padding:20px;
+    border-radius:8px;
+}
+.alert .editbox h2{
+    color:#333;
+    font-size:18px;
+    line-height:18px;
+}
+.alert .editbox p{
+    margin-top:12px;
+}
+.alert .editbox p label{
+    font-size:20px;
+    color:#333;
+    line-height:35px;
+    width:85px;
+    height:35px;
+    display:block;
+    float:left;
+}
+.alert .editbox p input{
+    width:150px;
+    height:35px;
+    border: 2px solid #5b5b5b;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    border-radius: 6px;
+    padding-left: 10px;
+
+}
+.alert .editbox button{
+    width:70px;
+    height;35px;
+    border-radius:5px;
+    outline:none;
+    border:none;
+    background:#586933;
+    font-size:16px;
+    line-height:35px;
+    color:#fff;
+
+}
+.alert .editbox .quxiao{
+    width:70px;
+    height;35px;
+    border-radius:5px;
+    background:#586933;
+    font-size:16px;
+    line-height:35px;
+    color:#fff;
+    display:block;
+    float:left;
+    text-align:center;
+
+}
+.alert .editbox .button{
+    width:100%;
+    height:35px;
+    padding-left:300px;
+    margin-top:35px;
+    box-sizing:border-box;
+
+}
+.meau{
+    /*width: 330px;*/
+    width: 0;
+    height: 25px;
+    position: fixed;
+    right: 93px;
+    top: 40px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.3s ease-out 0s;
+}
+.meau li{
+    width: 76px;
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+
+}
+.meau li a{
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+}
+.meau li:before{
+    margin-left: -5px;
+    content: '[';
+}
+.meau li:after{
+    margin-left: 5px;
+    content: ']';
+}
+header{
+    width: 100%;
+    height: 100px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+header .left,header .right{
+    width: 50px;
+    height: 100%;
+    float: left;
+    color: white;
+    line-height: 100px;
+    text-align: center;
+    z-index: 999;
+}
+header i:hover{
+    color: gray;
+}
+header .left{
+    float: left;
+    z-index: 999;
+}
+header .right{
+    float: right;
+    position: relative;
+}
+header .iconfont{
+    font-size: 30px;
+}
+.head{
+    width: 100%;
+    height: 200px;
+}
+.head .center{
+    width: 160px;
+    height: 200px;
+    margin-left: 47%;
+    overflow: hidden;
+}
+.head .center .top{
+    width: 120px;
+    height: 120px;
+    border-radius:50%;
+    margin-left:20px;
+}
+.head .center h3{
+    width: auto;
+    height: 38px;
+    color: white;
+    font-size: 20px;
+    line-height: 38px;
+    margin-top:20px;
+    float:left;
+}
+.head .center span{
+    width:60px;
+    height:30px;
+    padding:5px;
+    box-sizing:border-box;
+    border: 1px solid red;
+    border-radius: 8px;
+    margin: 25px 0 40px;
+    display: block;
+    float: right;
+    font-size: 16px;
+    line-height: 19px;
+    color: red;
+    text-align: center;
+    cursor:pointer;
+}

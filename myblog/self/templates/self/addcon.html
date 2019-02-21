@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'self/css/pintuer.css' %}">
+<link rel="stylesheet" href="{% static 'self/css/admin.css' %}">
+<script src="{% static 'pingtai/js/jquery.js' %}"></script>
+<script src="{% static 'pingtai/js/pintuer.js' %}"></script>
+<!--<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+</head>
+<style>
+     .form-group .field ul{
+        height:30px;
+    }
+    .form-group .field li{
+        width:100px;
+        float:left;
+    }
+</style>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="/self/content/">
+    {% csrf_token %}
+     <div class="form-group">
+          <div class="label">
+            <label>网站分类：</label>
+          </div>
+          <div class="field" style="padding-top:8px;">
+              {% for item in cate %}
+            <strong>{{ item.name }}：&nbsp;</strong>
+              {% for obj in item.keyword_set.all %}
+            <input id="ishome1"  type="radio" name="kw" value="{{ obj.id }}"/>{{ obj.name }}
+              {% endfor %}
+             <br>
+              {% endfor %}
+          </div>
+
+        </div>
+      <div class="form-group">
+          <div class="label">
+            <label>个人分类：</label>
+          </div>
+          <div class="field" style="padding-top:8px;">
+              {{ form.sc }}
+            <!--<strong>前端：&nbsp;</strong>-->
+              <!---->
+            <!--首页 <input id="ishome3"  type="checkbox" />-->
+            <!--推荐 <input id="isvouch3"  type="checkbox" />-->
+            <!--置顶 <input id="istop3"  type="checkbox" />-->
+          </div>
+
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>主题：</label>
+          </div>
+          <div class="field" style="padding-top:8px;">
+              {{ form.theme }}
+            <!--首页 <input   type="checkbox" />-->
+            <!--推荐 <input   type="checkbox" />-->
+            <!--置顶 <input  type="checkbox" />-->
+          </div>
+
+        </div>
+        <div class="form-group">
+        <div class="label">
+          <label>标题：</label>
+        </div>
+        <div class="field">
+            {{ form.title}}
+          <!--<input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />-->
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>内容：</label>
+        </div>
+        <div class="field">
+            {{ form.con }}
+          <!--<textarea name="content" class="input" style="height:450px; border:1px solid #ddd;"></textarea>-->
+          <div class="tips"></div>
+        </div>
+      </div>
+        <div class="form-group">
+          <div class="label">
+            <label>是否发布：</label>
+          </div>
+          <div class="field" style="padding-top:8px;">
+              {{ form.s }}
+
+
+          </div>
+
+        </div>
+        <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+</body></html>

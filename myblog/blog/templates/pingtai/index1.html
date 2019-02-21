@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>天涯博客_有见识的人都在这里</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/pingtai/css/index.css' %}">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_853366_kl0akvrmkn.css">
+</head>
+<body>
+    <div class="fixed"></div>
+
+    <div class="wrapper">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+        </svg>
+    </div>
+    <header>
+        <div class="head">
+            <div class="logo">
+                <a href=""><img src="{% static 'pingtai/img/logo.png' %}" alt=""></a>
+            </div>
+            <div class="nav">
+                <ul style="width:auto;float:left;">
+                    {% for i in cate %}
+                    <li>
+                        <a href="">{{ i.name }}</a>
+                        <span class="line"></span>
+                    </li>
+                    {% endfor %}
+                    <!--<li><a href="">聚焦</a><span class="line"></span></li>-->
+                    <!--<li><a href="">天涯榜</a><span class="line"></span></li>-->
+                    <!--<li class="menu">-->
+                        <!--<span class="iconfont icon-menu"></span>-->
+                    <!--</li>-->
+                </ul>
+            <!--</div>-->
+            <!--<div class="search">-->
+                <!--<span class="iconfont icon-sousuo"></span>-->
+            <!--</div>-->
+            </div>
+            <div class="login">
+                <ul>
+                    {% if not name %}
+                    <li><a href="{% url 'pingtai:login' %}">登陆</a></li>
+                    <li><a href="{% url 'pingtai:zhuce' %}">注册</a></li>
+                    {% else %}
+                    <li><a href="{% url 'pingtai:person' %}">{{ name }}</a></li>
+                    <li><a href="{% url 'pingtai:loginout' %}">退出</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="topBox">
+            <div class="top">
+                <div class="hd">
+                    <h2>博客</h2>
+                </div>
+                <div class="text">
+                    这里收录了<span>7750213</span>个博客，<span>125793281</span>篇博文
+                </div>
+            </div>
+        </div>
+        <div class="mainBox">
+            <div class="main">
+                <div class="leftBox">
+                    <div class="lbox">
+                        <div class="lbtop">
+                            <div class="lunbo">
+                                <img src="{% static 'pingtai/img/lunbo2.jpg' %}" alt="">
+                            </div>
+                            <div class="right">
+                                <div class="r_top">
+                                    <ul class="ul1">
+                                        <li>
+                                            <h2><a href="">浅议中国史上两位客死他乡的开国皇后</a></h2>
+                                            <span>在中国浩瀚的历史长河中，说到客死他乡的皇后有哪些？略知历史的人都能说出一两位来，如果要是具体地说历史…</span>
+                                        </li>
+                                        <li>
+                                            <h2><a href="">为何总有人拿“不讲道理”当本事？</a></h2>
+                                            <span>无论是“霸座男”还是“霸座女”，他（她）们在无理的过程中，都存在一定的“雄辩症”和“厚皮逻辑”。病根…</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="r_bot">
+                                    <ul>
+                                        <li>
+                                            <h3><a href="">巴丹吉林:</a></h3>
+                                            <span><a href="">射死流浪猫的学生被勒令退学值得商榷</a></span>
+                                        </li>
+                                        <li>
+                                            <h3><a href="">何玺007:</a></h3>
+                                            <span><a href="">美团点评上市，王兴的野心和局限</a></span>
+                                        </li>
+                                        <li>
+                                            <h3><a href="">张捷:</a></h3>
+                                            <span><a href="">幼儿集体受害只抓院长一人？</a></span>
+                                        </li>
+                                        <li>
+                                            <h3><a href="">姬鹏:</a></h3>
+                                            <span><a href="">中秋节仅剩的文化仪式难掩家族的分崩离</a></span>
+                                        </li>
+                                        <li>
+                                            <h3><a href="">科幻:</a></h3>
+                                            <span><a href="">美国劳动节，应如何找回激励创业者的初</a></span>
+                                        </li>
+                                        <li>
+                                            <h3><a href="">郑渝川:</a></h3>
+                                            <span><a href="">放弃治疗，是尊重生命尊严还是践踏生命</a></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lbmain">
+                            <div class="lbm_box">
+                                <div class="head">
+                                    <ul class="yijiBox">
+                                        <li class="yiji"><a class="active" href="javascript:;">全部显示</a></li>
+                                        <li class="yiji"><a href="javascript:;">时事财经</a></li>
+                                        <li class="yiji"><a href="javascript:;">文化历史</a></li>
+                                        <li class="yiji"><a href="javascript:;">娱乐体育</a></li>
+                                        <li class="yiji"><a href="javascript:;">情感生活</a></li>
+                                    </ul>
+                                </div>
+                                <div class="neirong">
+                                    <div class="nr_box">
+                                        <ul> 
+                                            <li>
+                                                <div>
+                                                    <div class="left">
+                                                        <a class="img" href=""><img src="{% static '/pingtai/img/zuoz1.jpg' %}" alt=""></a>
+                                                        <span><a href="">矢弓</a></span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h2><a href="">红绿灯乞丐生气，砸车自认倒霉？</a></h2>
+                                                        <div class="time">
+                                                            2018-09-19 15:46:00   24浏览  0回复
+                                                        </div>
+                                                        <div class="text">
+                                                            <span>海口有车一族都有类似经历，在路口等红绿灯，常有乞丐拦车乞讨，给还是不给，这还真是个难题。
+
+                                                                在海口最繁忙的南海大道与龙昆南路交叉口。9月16日上午10时许，发生一起因乞讨而发生的纠纷，车主车辆前挡风玻璃等…</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <div class="left">
+                                                        <a class="img" href=""><img src="{% static '/pingtai/img/zuoz2.jpg' %}" alt=""></a>
+                                                        <span><a href="">被劫持的飞机</a></span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h2><a href="">做家长真苦真累真惨：一年级孩子他爸的感想</a></h2>
+                                                        <div class="time">
+                                                            2018-09-19 17:33:00   9浏览  0回复</div>
+                                                        <div class="text">
+                                                            <span>小孩开学之际，我在宁夏西海固走访贫困山区的小学，实地感受当地的教育。
+                                                                我最大感受，贫困地区的教学设备比城里不能差，教育联网，课件多样化，表达更加活泼，这样完全规避了老师发音不标准等短板。
+                                                                他们差距只是体现在老师自身的素养，这里的老…</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <div class="left">
+                                                        <a class="img" href=""><img src="{% static '/pingtai/img/zuoz3.jpg' %}" alt=""></a>
+                                                        <span><a href="">花雨溪音</a></span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h2><a href="">儒家止戈为武与帝国的和平崛起   </a></h2>
+                                                        <div class="time">
+                                                            2018-09-20 10:23:00   22浏览  1回复
+                                                        </div>
+                                                        <div class="text">
+                                                            <span>结果敌可自破，何须流血浮杵。此善之善战者也。其二，文化御敌，华夏民族当时有很高的文化内蓄，从周孔一脉相承的中原文化到了魏晋蔚为大观。而世界的划分可以按国家来划分，种族来划分，利益来划分，意识来划分，文化来划分。除了文化划分外，其它的划分及冲突都将是暂时的。美国…</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <div class="left">
+                                                        <a class="img" href=""><img src="{% static '/pingtai/img/zuoz4.jpg' %}" alt=""></a>
+                                                        <span><a href="">姬二叔</a></span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h2><a href="">讨伐“秀官职”要直面四大现实</a></h2>
+                                                        <div class="time">
+                                                            2018-09-22 00:03:00   14浏览  0回复
+                                                        </div>
+                                                        <div class="text">
+                                                            <span>坦白讲，整个事件的逻辑并不复杂，就是学生家长自报家门，让孩子的老师明白自己“靠山很硬”，希望老师对自己的孩子“特殊照顾”。对于这样的事情，在我们可触及的生活中，其实也是随处可见的，只是在这场“自报家门”的过程中，因随…</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <div class="left">
+                                                        <a class="img" href=""><img src="{% static '/pingtai/img/zuoz5.jpg' %}" alt=""></a>
+                                                        <span><a href="">罗三鸣</a></span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h2><a href="">十二星座国庆前后会有什么样的好运？</a></h2>
+                                                        <div class="time">
+                                                            2018-09-23 23:59:00   1浏览  0回复
+                                                        </div>
+                                                        <div class="text">
+                                                            <span>好运气就好像一片大晴天，每个人都想要自己的工作生活被好运气永照。诚然如此，在很多时候，明明你很努力但就是比不过别人的一点点运气，不过千万别埋怨为什么乌云总是跟着你，毕竟风水轮流转，说不定你的幸运正马不停蹄的朝你奔过来。今天我们就来说说在国庆前后，十二星座会有什么…</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <div class="left">
+                                                        <a class="img" href=""><img src="{% static '/pingtai/img/zuoz6.jpg' %}" alt=""></a>
+                                                        <span><a href="">雨兰的小木屋</a></span>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h2><a href="">这位癫狂的书画天才，还是宋朝第一作男</a></h2>
+                                                        <div class="time">
+                                                            2018-09-13 14:17:00   92浏览  0回复
+                                                        </div>
+                                                        <div class="text">
+                                                            <span>如果说苏东坡是宋代第一男神，那么，要说宋代的第一作男，那就非米芾莫属了。
+
+                                                                当年徽宗皇帝问作为书画学博士的他，“尝问本朝以书名世者数人，各以其人对，曰：蔡京不得笔，蔡卞得笔而乏逸韵，蔡襄勒字，黄庭坚描字，苏轼画字。上曰：卿书如何？曰：臣书刷字。”从年龄上来讲，人…</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nr_end">
+                                        <a href="" class="loadmore">加载更多</a>
+                                    </div>
+                                </div>
+                                <div class="lb_ggao">
+                                    <div class="gaoBox">
+                                        <ul>
+                                            <li><a href="">python快速入门</a><a class="a2" href="">电脑编程入门..</a></li>
+                                            <li><a href="">目前网游排行榜</a><a class="a2" href="">小程序制作</a></li>
+                                            <li><a href="">日语如何学</a><a class="a2" href="">h5网站模板</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="gaoBox">
+                                        <ul>
+                                            <li><a href="">前端开发</a><a class="a2" href="">如何制作小程序</a></li>
+                                            <li><a href="">什么叫做云计算</a><a class="a2" href="">网店转让平台</a></li>
+                                            <li><a href="">自己建站</a><a class="a2" href="">零基础自学编程</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightBox">
+
+                    <div class="kaitong" style="margin-bottom:10px;">
+                        <div class="box">
+                            <div class="top">
+                                <h2>有见识的人都在这里</h2>
+                                <p>表达网民立场,，记录个人生活，聚集意见领袖，众多草根精英，以我们的观点影响社会的进程 。</p>
+                            </div>
+                            {% if type != 3 %}
+                            <div class="ktbox">
+                                <a href="{% url 'pingtai:kaitong' %}" class="kt">开通博客</a>
+                            </div>
+                            {% endif %}
+                            {% if type == 3 %}
+                            <div class="ktbox">
+                                <a href="{% url 'self:index' name %}" class="kt">进入我的博客</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if isadv == 1 %}
+                     <div class="kaitong">
+                        <div class="box">
+                            <div class="top">
+                                <h2> &nbsp;&nbsp;&nbsp;你想买的房子值多少钱！！！！！</h2>
+
+                            </div>
+
+                            <div class="ktbox">
+                                <a href="{% url 'pingtai:fangjia' %}" class="kt">马上了解</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="new">
+                        <div class="top">
+                            <h2>新声</h2>
+                            <span class="sline"></span>
+                        </div>
+                        <div class="box">
+                            <ul>
+                                <li>
+                                    <div class="left">
+                                        <a href=""><img src="{% static '/pingtai/img/huitou.jpeg' %}" alt=""></a>
+                                    </div>
+                                    <div class="right">
+                                        <h3><a href="">天涯博客</a></h3>
+                                        <span><a href="">致 歉 声 明</a></span>
+                                    </div>
+                                </li>
+                               <li>
+                                    <div class="left">
+                                        <a href=""><img src="{% static '/pingtai/img/new2.jpg' %}" alt=""></a>
+                                    </div>
+                                    <div class="right">
+                                        <h3><a href="">文锦书屋</a></h3>
+                                        <span><a href="">令人陶醉的秋分节气</a></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <a href=""><img src="{% static '/pingtai/img/new3.jpg' %}" alt=""></a>
+                                    </div>
+                                    <div class="right">
+                                        <h3><a href="">只取一瓢也不取</a></h3>
+                                        <span><a href="">我们的教育病在哪里了？</a></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <a href=""><img src="{% static '/pingtai/img/new1.jpg' %}" alt=""></a>
+                                    </div>
+                                    <div class="right">
+                                        <h3><a href="">舒晴曼妙</a></h3>
+                                        <span><a href="">谁能把日子一眼望穿</a></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="new bw">
+                            <div class="top">
+                                <h2>博文排行榜</h2>
+                                <span class="sline"></span>
+                            </div>
+                            <div class="bwbox">
+                                <ul>
+                                   <li>
+                                       <i class="top top1">01</i>
+                                       <h2><a href="">稻花香里话丰年</a></h2>
+                                       <span>1162</span>
+                                   </li>
+                                   <li>
+                                        <i class="top top1">02</i>
+                                        <h2><a href="">秋藕养人</a></h2>
+                                        <span>1002</span>
+                                    </li>
+                                    <li>
+                                       <i class="top top1">03</i>
+                                       <h2><a href="">谁是三国历史上最卑鄙的小人？</a></h2>
+                                       <span>869</span>
+                                   </li>
+                                   <li>
+                                        <i class="top">04</i>
+                                        <h2><a href="">从六院十一所张小平的跳槽说起</a></h2>
+                                        <span>468</span>
+                                    </li>
+                                    <li>
+                                       <i class="top">05</i>
+                                       <h2><a href="">公布陈婧妍妈妈微信内容的老师,已…</a></h2>
+                                       <span>321</span>
+                                   </li>
+                                   <li>
+                                        <i class="top">06</i>
+                                        <h2><a href="">娘炮乱象引纷争，古代也有流行风 </a></h2>
+                                        <span>320</span>
+                                    </li>
+                                    <li>
+                                       <i class="top">07</i>
+                                       <h2><a href="">新iPhone的高售价下，供应商们是笑...</a></h2>
+                                       <span>246</span>
+                                   </li>
+                                   <li>
+                                        <i class="top">08</i>
+                                        <h2><a href="">公域中的“飞扬跋扈”为何会泛滥...</a></h2>
+                                        <span>126</span>
+                                    </li>
+                                    <li>
+                                       <i class="top">09</i>
+                                       <h2><a href="">希特勒为何没能搭建起纳粹的影子...</a></h2>
+                                       <span>85</span>
+                                   </li>
+                                   <li>
+                                        <i class="top">10</i>
+                                        <h2><a href="">不可小觑的红楼“十二钗”之紫...</a></h2>
+                                        <span>14</span>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="new mbo">
+                        <div class="top">
+                            <h2>名博推荐</h2>
+                            <span class="sline"></span>
+                        </div>
+                        <div class="box">
+                                <a desc="标题" href="http://liangshichuan.blog.tianya.cn" class="a3">梁石川</a>
+                                <a desc="标题" href="http://humeizi.blog.tianya.cn" class="a3">等待温暖的</a>
+                                <a desc="标题" href="http://wodesixiangli.blog.tianya.cn" class="a5">上海世博会</a>
+                                <a desc="标题" href="http://liujin520.blog.tianya.cn" class="a5">草根一一</a>
+                                <a desc="标题" href="http://yuge1982.blog.tianya.cn" class="a0">羽戈</a>
+                                <a desc="标题" href="http://chunh.blog.tianya.cn" class="a0">椿桦</a>
+                                <a desc="标题" href="http://yanghengjun.blog.tianya.cn" class="a1">杨恒均</a>
+                                <a desc="标题" href="http://zhengyuchuan.blog.tianya.cn" class="a2">郑渝川</a>
+                                <a desc="标题" href="http://cskun.blog.tianya.cn" class="a5">蔡慎坤</a>
+                                <a desc="标题" href="http://kang18ju18feng18yu.blog.tianya.cn" class="a1">野云先生</a>
+                                <a desc="标题" href="http://huo_qingcheng.blog.tianya.cn" class="a1">霍倾城</a>
+                                <a desc="标题" href="http://xinxueshe.blog.tianya.cn" class="a4">新学社</a>
+                                <a desc="标题" href="http://skysfw.blog.tianya.cn" class="a2">科幻星系</a>
+                                <a desc="标题" href="http://dianyingyizhouhan.blog.tianya.cn" class="a3">电影一周酣</a>
+                                <a desc="标题" href="http://badanjilin55.blog.tianya.cn" class="a5">巴丹吉林55</a>
+                                <a desc="标题" href="http://lijin8892.blog.tianya.cn" class="a3">力瑾</a>
+                                <a desc="标题" href="http://manshouzhiwen.blog.tianya.cn" class="a5">漫手织文</a>
+                                <a desc="标题" href="http://dingaihe.blog.tianya.cn" class="a5">丁哀鹤</a>
+                                <a desc="标题" href="http://moer66.blog.tianya.cn" class="a1">树下的寞儿</a>
+                                <a desc="标题" href="http://xichuangfeiyu.blog.tianya.cn" class="a0">西窗飞雨</a>
+                                <a desc="标题" href="http://jishangshui.blog.tianya.cn" class="a1">姬封商水</a>
+                                <a desc="标题" href="http://luoshuyi_222.blog.tianya.cn" class="a2">文侠罗竖一</a>
+                                <a desc="标题" href="http://lingluanderizi.blog.tianya.cn " class="a0">春风得意62</a>
+                                <a desc="标题" href="http://wr_en.blog.tianya.cn" class="a2">温柔恶女</a>
+                                <a desc="标题" href="http://huayuxiyin.blog.tianya.cn" class="a0">花雨溪音</a>
+                                <a desc="标题" href="http://1156722.blog.tianya.cn " class="a5">冰溪洋</a>
+                                <a desc="标题" href="http://dlhaoyiong.blog.tianya.cn" class="a0">老海博客</a>
+                                <a desc="标题" href="http://wangxiaohuazl.blog.tianya.cn" class="a3">王晓华</a>
+                                <a desc="标题" href="http://mazhiyao2004.blog.tianya.cn" class="a0">马知遥</a>
+                                <a desc="标题" href="http://lwlsyase.blog.tianya.cn" class="a0">列瓦雷士</a>
+                                <a desc="标题" href="http://lengsanren.blog.tianya.cn" class="a2">冷散人</a>
+                                <a desc="标题" href="http://chenxiaoshou.blog.tianya.cn" class="a2">chenxiaosh</a>
+                                <a desc="标题" href="http://reggie23.blog.tianya.cn " class="a2">科比无罪</a>
+                                <a desc="标题" href="http://marketing_qin.blog.tianya.cn" class="a4">安琪士兵</a>
+                                <a desc="标题" href="http://aqjn8899.blog.tianya.cn" class="a1">江南雪儿</a>
+                                <a desc="标题" href="http://wuliehui.blog.tianya.cn" class="a3">邬烈辉</a>
+                                <a desc="标题" href="http://maomuqing.blog.tianya.cn" class="a4">毛牧青</a>
+                                <a desc="标题" href="http://hnlyc803.blog.tianya.cn" class="a2">林尤超</a>
+                                <a desc="标题" href="http://iceblack.blog.tianya.cn" class="a3">冰黛儿</a>
+                                <a desc="标题" href="http://827961127.blog.tianya.cn" class="a4">赵良田</a>
+                                <a desc="标题" href="http://wuhancjh.blog.tianya.cn" class="a3">chinesecjh</a>
+                                <a desc="标题" href="http://haishidingfengbo.blog.tianya.cn" class="a2">还是定风波</a>
+                                <a desc="标题" href="http://poetbaolin.blog.tianya.cn" class="a3">程宝林</a>
+                                <a desc="标题" href="http://chenlingshen.blog.tianya.cn" class="a5">chenlingsh</a>
+                                <a desc="标题" href="http://puerto_arturo.blog.tianya.cn " class="a4">樂浪浦江渡</a>
+                                <a desc="标题" href="http://xiaoyu918.blog.tianya.cn" class="a5">笑雨918</a>
+                                <a desc="标题" href="http://baidu123.blog.tianya.cn" class="a5">邝海炎</a>
+                                <a desc="标题" href="http://tianyapusu.blog.tianya.cn" class="a5">朴素</a>
+                                <a desc="标题" href="http://heqil.blog.tianya.cn" class="a3">何小手</a>
+                                <a desc="标题" href="http://zengying.blog.tianya.cn" class="a5">四川曾颖</a></ul>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="foot">
+            <ul class="ul1">
+                <li><a href="">关于天涯</a><span class="line"></span></li>
+                <li><a href="">广告服务</a><span class="line"></span></li>
+                <li><a href="">天涯客服</a><span class="line"></span></li>
+                <li><a href="">隐私和版权</a><span class="line"></span></li>
+                <li><a href="">联系我们</a><span class="line"></span></li>
+                <li><a href="">加入天涯</a><span class="line"></span></li>
+                <li><a href="">手机版</a><span class="line"></span></li>
+                <li><a href="">侵权投诉</a></li>
+            </ul>
+            <p class="endp"> © 1999 - 2018天涯社区</p>
+        </div>
+    </footer>
+<!--底部效果-->
+    <div class="wrapper wrapper1">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+        </svg>
+    </div>
+</body>
+</html>

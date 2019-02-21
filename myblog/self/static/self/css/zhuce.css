@@ -1,0 +1,155 @@
+@import "base.css";
+.fixed{
+    width: 100%;
+    height: 100%;
+    background: url("../img/fix.jpg") no-repeat center;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.gray{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0.3);
+}
+.head{
+    width: 100%;
+    height: 145px;
+    margin-top: 80px;
+
+}
+.head .center{
+    width: 120px;
+    height: 145px;
+    margin-left: 46%;
+    overflow: hidden;
+}
+.head .center .top{
+    width: 100%;
+    height: 76px;
+    background: url("../img/omikron.png") no-repeat center;
+    background-size: contain;
+    margin-top: 10px;
+}
+.head .center h3{
+    width: 100%;
+    height: 38px;
+    color: white;
+    font-size: 16px;
+    line-height: 38px;
+    text-align: center;
+    margin-top: 20px;
+}
+.con{
+    width: 353px;
+    height: 583px;
+    background: rgba(255,255,255,0.4);
+    margin: 70px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px 10px 0;
+    box-sizing: border-box;
+}
+.con h1{
+    width: 100%;
+    height: 16px;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: normal;
+
+    margin-top: 10px;
+    color: black;
+}
+.con h2{
+    width: 100%;
+    height: 14px;
+    color: #333;
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 8px;
+
+}
+.con input{
+    width: 100%;
+    height: 32px;
+    border: 2px solid #5b5b5b;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    border-radius: 4px;
+    padding-left: 10px;
+    margin-top: 12px;
+}
+.con .word{
+    width: 100%;
+    height: 16px;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333;
+}
+.con .word input{
+    width: 16px;
+    height: 16px;
+    float: left;
+    display: block;
+    margin:0 5px 0;
+}
+.con button{
+    width: 100%;
+    height: 32px;
+    border: none;
+    background: #586933;
+    outline: none;
+    border-radius: 4px;
+    padding-left: 10px;
+    margin-top: 12px;
+    color: white;
+    font-size: 18px;
+    line-height: 32px;
+
+}
+.con .button{
+    background: #A79C87;
+    color: black;
+}
+.con .denglu{
+    width: 100%;
+    height: 24px;
+    margin-top: 30px;
+}
+.con .denglu .left{
+    width: 113px;
+    height: 24px;
+    color: #333;
+    line-height: 24px;
+    font-size: 16px;
+    float: left;
+}
+.con .denglu ul{
+    width: 94px;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: space-between;
+}
+.con .denglu ul li{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #49a7ff;
+    text-align: center;
+    line-height: 24px;
+    color: white;
+}
+.con .denglu ul li:nth-child(2){
+    background: #0bc631
+}
+.con .denglu ul li:nth-child(3){
+    background: #f73835
+}

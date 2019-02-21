@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预测房价</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/pingtai/css/fangjia.css' %}">
+    <script src="{% static '/pingtai/js/jquery.js' %}"></script>
+    <script src="{% static '/pingtai/js/index2.js' %}"></script>
+
+</head>
+<body>
+    <!--背景图片-->
+    <div class="fixed"></div>
+    <main>
+        <h2>预测房价</h2>
+        <form action="javascripts:;" method="post" id="form">
+            {% csrf_token %}
+            <div class="box">
+                <label for="">请输入房子所在地区：</label>
+                {{ form.dist }}
+            </div>
+            <div class="box">
+             <label for="">请输入房子的面积：</label>
+             {{ form.area }}
+            </div>
+            <div class="box">
+                <label for="">请输入室（数字）：</label>
+                {{ form.shi }}
+            </div>
+            <div class="box">
+                <label for="">请输入房子厅的数量：</label>
+                {{ form.hall }}
+            </div>
+            <div class="box">
+                <label for="">请输入房子楼层：</label>
+                {{ form.floor }}
+            </div>
+            <div class="box">
+                <label for="">是否靠近学校：</label>
+                {{ form.school }}
+            </div>
+            <div class="box">
+                <label for="">是否靠近地铁：</label>
+                {{ form.subway }}
+            </div>
+            {% csrf_token %}
+            <button id="button" onclick="price()">获取报价</button>
+        </form>
+        <button style="float:left;margin-left:400px;margin-top:-80px;"><a style="display:block;width:150px;height:50px;font-size:20px;
+line-height:50px;color:#fff;" href="{% url 'pingtai:index' %}">返回首页</a></button>
+
+    </main>
+<!--报价页面开始-->
+    <div class="alert">
+        <h1 class="search" id="search">
+            房子价格为：{{ price }} 万元
+        </h1>
+        <button id="quxiao">确定</button>
+    </div>
+</body>
+<script>
+    function price(){
+    console.log("hi")
+        $.ajax({
+
+            url:"/fangjia/",
+            type:'post',
+            dataType:"json",
+            //将form表单的数据序列化后传给后台
+            data:$('#form').serialize(),
+            success:function(e){
+                console.log("haha")
+                if(e.message=="ok"){
+                    $("#search").replaceWith($(
+                        `
+                        <h1 class="search" id="search">
+                            房子价格为：${e.result} 万元
+                        </h1>
+                        `
+                ))
+                }
+            }
+        })
+    }
+</script>
+</html>
